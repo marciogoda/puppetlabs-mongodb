@@ -3,7 +3,7 @@ class mongodb::repo::yum inherits mongodb::repo {
   # We try to follow/reproduce the instruction
   # http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/
 
-  yumreponame = "mongodb-org-${mongodb::params::version}"
+  $yumreponame = "mongodb-org-${mongodb::params::version}"
 
   if($::mongodb::repo::ensure == 'present' or $::mongodb::repo::ensure == true) {
     yumrepo { 'mongodb':
