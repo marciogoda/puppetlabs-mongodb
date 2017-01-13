@@ -7,12 +7,13 @@ class mongodb::repo (
   $proxy_username = undef,
   $proxy_password = undef,
   $gpg_key        = undef,
+  $repo_name      = undef,
 ) inherits mongodb::params {
   case $::osfamily {
     'RedHat', 'Linux': {
       if ($repo_location != undef){
         $location = $repo_location
-        $description = 'MongoDB Custom Repository'
+        $description = "${repo_name}"
       } elsif $mongodb::globals::use_enterprise_repo == true {
         $location = 'https://repo.mongodb.com/yum/redhat/$releasever/mongodb-enterprise/stable/$basearch/'
         $description = 'MongoDB Enterprise Repository'

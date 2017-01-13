@@ -6,7 +6,7 @@ class mongodb::repo::yum inherits mongodb::repo {
   $yumreponame = "mongodb-org-${mongodb::params::version}"
 
   if($::mongodb::repo::ensure == 'present' or $::mongodb::repo::ensure == true) {
-    yumrepo { 'mongodb':
+    yumrepo { '${yumreponame}':
       descr          => $::mongodb::repo::description,
       baseurl        => $::mongodb::repo::location,
       gpgcheck       => '1',
@@ -19,7 +19,7 @@ class mongodb::repo::yum inherits mongodb::repo {
     Yumrepo[$yumreponame] -> Package<|tag == $yumreponame|>
   }
   else {
-    yumrepo { 'mongodb':
+    yumrepo { '${yumreponame}':
       enabled => absent,
     }
   }
