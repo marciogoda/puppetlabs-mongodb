@@ -6,7 +6,7 @@ class mongodb::repo::yum inherits mongodb::repo {
   $yumreponame = "mongodb-org-${mongodb::params::version}"
 
   if($::mongodb::repo::ensure == 'present' or $::mongodb::repo::ensure == true) {
-    yumrepo { '${yumreponame}':
+    yumrepo { "${yumreponame}":
       descr          => $::mongodb::repo::description,
       baseurl        => $::mongodb::repo::location,
       gpgcheck       => '1',
@@ -16,10 +16,10 @@ class mongodb::repo::yum inherits mongodb::repo {
       proxy_username => $::mongodb::repo::proxy_username,
       proxy_password => $::mongodb::repo::proxy_password,
     }
-    Yumrepo[$yumreponame] -> Package<|tag == $yumreponame|>
+    Yumrepo["${yumreponame}"] -> Package<|tag == "${yumreponame}"|>
   }
   else {
-    yumrepo { '${yumreponame}':
+    yumrepo { "${yumreponame}":
       enabled => absent,
     }
   }
