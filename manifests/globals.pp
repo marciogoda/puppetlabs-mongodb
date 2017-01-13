@@ -36,6 +36,7 @@ class mongodb::globals (
   $pidfilepath           = undef,
   $pidfilemode           = undef,
   $manage_pidfile        = undef,
+  $gpg_key               = undef,
 ) {
 
   # Setup of the repo only makes sense globally, so we are doing it here.
@@ -44,6 +45,7 @@ class mongodb::globals (
       ensure        => present,
       repo_location => $repo_location,
       proxy         => $repo_proxy,
+      gpg_key        => $gpg_key
     }
   }
 }

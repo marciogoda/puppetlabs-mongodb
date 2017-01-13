@@ -6,6 +6,7 @@ class mongodb::repo (
   $proxy          = undef,
   $proxy_username = undef,
   $proxy_password = undef,
+  $gpg_key        = undef,
 ) inherits mongodb::params {
   case $::osfamily {
     'RedHat', 'Linux': {
